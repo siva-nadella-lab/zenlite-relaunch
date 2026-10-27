@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "embeddinggemma-2-one-vector-space",
+    "title": "One shared space for text, code, images, video and audio",
+    "description": "EmbeddingGemma 2 puts text, code, images, video and audio in one 768-number space. What that changes in search, and five steps to check it yourself.",
+    "audience": "engineers",
+    "date": "2026-10-25",
+    "reading_minutes": 6
+  },
+  {
+    "slug": "syllabus-first-ai-quiz",
+    "title": "Tell any AI tool your syllabus topics before it quizzes you",
+    "description": "Practice questions should come from your syllabus. Type your topics into any AI chatbot first and tell it to stay on that list. Three steps, any chatbot.",
+    "audience": "eng-students",
+    "date": "2026-10-26",
+    "reading_minutes": 4
+  },
+  {
+    "slug": "what-can-a-claude-code-mod-reach",
+    "title": "What can a Claude Code mod reach once you install it?",
+    "description": "A Claude Code mod runs as you. The docs give one command that lists what it hooks, writes and sends without running it. Here is how to read it.",
+    "audience": "engineers",
+    "date": "2026-10-25",
+    "reading_minutes": 6
+  }
+]
