@@ -1,5 +1,13 @@
 [
   {
+    "slug": "ai-habits-to-change-at-home",
+    "title": "Three AI habits to change at home, and what to do instead",
+    "description": "Copying answers, trusting unchecked facts and oversharing with a chatbot can hurt your child's learning or privacy. A safer swap for each.",
+    "audience": "school-parents",
+    "date": "2026-10-30",
+    "reading_minutes": 6
+  },
+  {
     "slug": "embeddinggemma-2-one-vector-space",
     "title": "One shared space for text, code, images, video and audio",
     "description": "EmbeddingGemma 2 puts text, code, images, video and audio in one 768-number space. What that changes in search, and five steps to check it yourself.",
