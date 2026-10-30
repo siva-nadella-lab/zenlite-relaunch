@@ -8,6 +8,14 @@
     "reading_minutes": 6
   },
   {
+    "slug": "nemotron-bolt-e4b-128k-or-64k",
+    "title": "Ollama says 128K, NVIDIA says 64K: Nemotron 3.5 Bolt E4B context",
+    "description": "Ollama says Nemotron 3.5 Bolt E4B has 128K of context. NVIDIA's own page says 64K. Here's what we found, and what we'd do before trusting either.",
+    "audience": "engineers",
+    "date": "2026-10-28",
+    "reading_minutes": 6
+  },
+  {
     "slug": "syllabus-first-ai-quiz",
     "title": "Tell any AI tool your syllabus topics before it quizzes you",
     "description": "Practice questions should come from your syllabus. Type your topics into any AI chatbot first and tell it to stay on that list. Three steps, any chatbot.",
