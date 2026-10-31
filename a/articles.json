@@ -16,6 +16,14 @@
     "reading_minutes": 5
   },
   {
+    "slug": "check-ai-drafted-invoice-before-sending",
+    "title": "A neat AI invoice can still be wrong. Five checks before you send.",
+    "description": "Chatbots can write a tidy invoice with wrong figures. What the makers say, why a neat layout proves nothing, and five checks to run before you send.",
+    "audience": "business",
+    "date": "2026-10-30",
+    "reading_minutes": 5
+  },
+  {
     "slug": "embeddinggemma-2-one-vector-space",
     "title": "One shared space for text, code, images, video and audio",
     "description": "EmbeddingGemma 2 puts text, code, images, video and audio in one 768-number space. What that changes in search, and five steps to check it yourself.",
