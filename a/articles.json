@@ -32,6 +32,14 @@
     "reading_minutes": 6
   },
   {
+    "slug": "field-guide-code-review-1-seeded-bug",
+    "title": "A seeded bug: does the AI review find it?",
+    "description": "Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.",
+    "audience": "engineers",
+    "date": "2026-11-02",
+    "reading_minutes": 4
+  },
+  {
     "slug": "field-guide-exam-prep-1-revision-plan",
     "title": "Your last 7 days: a revision plan from your topic list",
     "description": "Field Guide, Exam prep with AI, part 1 of 6. A 7-day revision plan from your own topic list, tested on free ChatGPT: what worked and the catch.",
