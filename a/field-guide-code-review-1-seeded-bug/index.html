@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A seeded bug: does the AI review find it? | zenlite.</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EFEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1D2B" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InplbmxpdGUgTm9ydGggc3ltYm9sIChkYXJrKSI+PHRpdGxlPnplbmxpdGUgTm9ydGggc3ltYm9sIChkYXJrKTwvdGl0bGU+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjMUExRDJCIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAzKSI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNFRkVBRTAiIHN0cm9rZS13aWR0aD0iNCIvPgo8cG9seWdvbiBwb2ludHM9IjUwLDExIDM4LjUsNjggNTAsNjAiIGZpbGw9IiNBMDZEMjIiLz4KPHBvbHlnb24gcG9pbnRzPSI1MCwxMSA1MCw2MCA2MS41LDY4IiBmaWxsPSIjMUExRDJCIiBzdHJva2U9IiNBMDZEMjIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+Cjwvc3ZnPgo=">
+<meta name="description" content="Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.">
+<link rel="canonical" href="https://zenlite.ai/a/field-guide-code-review-1-seeded-bug/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="zenlite.">
+<meta property="og:title" content="A seeded bug: does the AI review find it?">
+<meta property="og:description" content="Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.">
+<meta property="og:url" content="https://zenlite.ai/a/field-guide-code-review-1-seeded-bug/">
+<meta property="og:image" content="https://zenlite.ai/a/field-guide-code-review-1-seeded-bug/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A seeded bug: does the AI review find it?, an article on zenlite.">
+<meta property="article:published_time" content="2026-11-02">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A seeded bug: does the AI review find it?">
+<meta name="twitter:description" content="Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.">
+<meta name="twitter:image" content="https://zenlite.ai/a/field-guide-code-review-1-seeded-bug/og.png">
+<style>@font-face{font-family:'Space Grotesk';font-weight:300 700;font-style:normal;font-display:swap;src:local('Space Grotesk'),url('/fonts/space-grotesk-latin.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;font-style:normal;font-display:swap;src:local('JetBrains Mono'),url('/fonts/jetbrains-mono-latin.woff2') format('woff2')}
+:root{--ink:#1A1D2B;--paper:#EFEAE0;--brass:#A06D22;--bg:var(--paper);--fg:var(--ink);--muted:rgba(26,29,43,.78);--rule:rgba(26,29,43,.28);--soft:rgba(26,29,43,.06);
+--code-bg:#1A1D2B;--code-fg:#EFEAE0;--sans:'Space Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,'Cascadia Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:var(--ink);--fg:var(--paper);--muted:rgba(239,234,224,.8);--rule:rgba(239,234,224,.3);--soft:rgba(239,234,224,.07);--code-bg:rgba(239,234,224,.07)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:1.125rem;line-height:1.65}
+.wrap{max-width:42rem;margin:0 auto;padding:0 16px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--fg);color:var(--bg);padding:8px 12px;z-index:9}
+.skip:focus{left:8px}
+a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:3px}
+a:focus-visible,pre:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 0 18px}
+.wm{display:block;width:132px;line-height:0}.wm svg{width:100%;height:auto}
+.wm .on-dark{display:none}
+@media (prefers-color-scheme:dark){.wm .on-light{display:none}.wm .on-dark{display:block}}
+nav a{font-weight:500;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow{margin:28px 0 0;font-weight:500;font-size:.85rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+h1{margin:10px 0 0;font-weight:700;font-size:clamp(2rem,7.4vw,3rem);line-height:1.08;letter-spacing:-.01em;overflow-wrap:break-word}
+.dot{color:var(--brass)}
+.lede{margin:18px 0 0;font-size:1.2rem;line-height:1.5;color:var(--muted)}
+.meta{margin:18px 0 0;font-size:.95rem;color:var(--muted)}
+.rule{height:3px;width:56px;background:var(--brass);margin:26px 0 8px}
+article h2{margin:2.4rem 0 .4rem;font-weight:700;font-size:1.55rem;line-height:1.2;padding-top:.9rem;border-top:1px solid var(--rule)}
+article h3{margin:1.8rem 0 .2rem;font-weight:700;font-size:1.2rem;line-height:1.3}
+p,ul,ol,blockquote,.tw,pre{margin:1rem 0}
+li{margin:.35rem 0}
+ul,ol{padding-left:1.4rem}
+blockquote{margin-left:0;padding:.1rem 0 .1rem 1rem;border-left:4px solid var(--brass)}
+blockquote p{margin:.5rem 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--soft);padding:.08em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code-bg);color:var(--code-fg);padding:14px 16px;border-radius:8px;overflow-x:auto;line-height:1.5;font-size:.9rem;border:1px solid var(--rule)}
+pre code{background:none;padding:0;font-size:inherit;color:inherit;overflow-wrap:normal}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.98rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px 9px 0;border-top:1px solid var(--rule)}
+th{font-weight:700;border-top:0;border-bottom:2px solid var(--fg)}
+sup.cite{font-size:.72em;line-height:0;margin-left:1px}
+sup.cite a{text-decoration-thickness:1px}
+.sources{margin-top:2.6rem}
+.sources ol{padding-left:1.6rem}
+.sources li{margin:.7rem 0;overflow-wrap:anywhere}
+.sources .when{display:block;font-size:.92rem;color:var(--muted)}
+footer.site{margin-top:3.2rem;padding:22px 0 44px;border-top:1px solid var(--rule);font-size:.92rem;color:var(--muted)}
+footer.site p{margin:.5rem 0}
+.list{list-style:none;padding:0}
+.list li{margin:0;padding:22px 0;border-top:1px solid var(--rule)}
+.list h2{margin:0;padding:0;border:0;font-size:1.35rem}
+.list p{margin:.4rem 0 0}
+.list .meta{margin-top:.4rem;font-size:.9rem}
+@media (min-width:700px){body{font-size:1.2rem}header.site{padding-top:28px}.wm{width:150px}}
+@media print{body{background:#fff;color:#000}a{color:#000}.wm .on-dark{display:none}nav{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="wrap">
+<header class="site"><a class="wm" href="/" aria-label="zenlite. home"><svg class="on-light" xmlns="http://www.w3.org/2000/svg" viewBox="-42.98 -118.60 419.73 168.60" aria-hidden="true" focusable="false">
+<rect x="-42.98" y="-118.60" width="419.73" height="168.60" fill="#EFEAE0"/><path d="M5.62 0V-12.62L34.74 -39.21V-40.6H6.62V-49.25H45.85V-36.63L16.69 -10.04V-8.65H46.65V0ZM79.06 1.4Q71.62 1.4 66.01 -1.75Q60.39 -4.9 57.26 -10.63Q54.13 -16.37 54.13 -24.03V-25.23Q54.13 -32.92 57.23 -38.64Q60.33 -44.35 65.88 -47.5Q71.42 -50.65 78.68 -50.65Q85.81 -50.65 91.16 -47.54Q96.5 -44.43 99.5 -38.82Q102.5 -33.21 102.5 -25.68V-21.76H64.55Q64.79 -15.27 68.96 -11.45Q73.14 -7.64 79.32 -7.64Q85.14 -7.64 88.08 -10.22Q91.02 -12.8 92.56 -16.2L101.15 -11.84Q99.71 -9 97.06 -5.92Q94.41 -2.83 90.08 -0.72Q85.75 1.4 79.06 1.4ZM64.65 -29.7H92.05Q91.65 -35.25 88.02 -38.43Q84.39 -41.61 78.62 -41.61Q72.75 -41.61 69.12 -38.43Q65.49 -35.25 64.65 -29.7ZM111.93 0V-49.25H122.02V-41.88H123.61Q125.02 -44.93 128.6 -47.53Q132.18 -50.12 139.27 -50.12Q144.89 -50.12 149.26 -47.63Q153.63 -45.13 156.11 -40.55Q158.6 -35.97 158.6 -29.6V0H148.31V-28.81Q148.31 -35.25 145.12 -38.29Q141.93 -41.34 136.27 -41.34Q129.88 -41.34 126.05 -37.1Q122.22 -32.87 122.22 -24.89V0ZM170.43 0V-70H180.72V0ZM193.03 0V-49.25H203.32V0ZM198.18 -55.96Q195.2 -55.96 193.14 -57.91Q191.09 -59.87 191.09 -62.98Q191.09 -66.13 193.14 -68.06Q195.2 -70 198.18 -70Q201.26 -70 203.26 -68.06Q205.26 -66.13 205.26 -62.98Q205.26 -59.87 203.26 -57.91Q201.26 -55.96 198.18 -55.96ZM234.14 0Q229.59 0 226.92 -2.68Q224.26 -5.37 224.26 -9.94V-40.6H210.74V-49.25H224.26V-65.63H234.55V-49.25H249.34V-40.6H234.55V-11.65Q234.55 -8.65 237.42 -8.65H247.65V0ZM280.96 1.4Q273.52 1.4 267.91 -1.75Q262.29 -4.9 259.16 -10.63Q256.03 -16.37 256.03 -24.03V-25.23Q256.03 -32.92 259.13 -38.64Q262.23 -44.35 267.78 -47.5Q273.32 -50.65 280.58 -50.65Q287.71 -50.65 293.06 -47.54Q298.4 -44.43 301.4 -38.82Q304.4 -33.21 304.4 -25.68V-21.76H266.45Q266.69 -15.27 270.86 -11.45Q275.04 -7.64 281.22 -7.64Q287.04 -7.64 289.98 -10.22Q292.92 -12.8 294.46 -16.2L303.05 -11.84Q301.61 -9 298.96 -5.92Q296.31 -2.83 291.98 -0.72Q287.65 1.4 280.96 1.4ZM266.55 -29.7H293.95Q293.55 -35.25 289.92 -38.43Q286.29 -41.61 280.52 -41.61Q274.65 -41.61 271.02 -38.43Q267.39 -35.25 266.55 -29.7Z" fill="#1A1D2B"/><path d="M320.01 1.4Q316.51 1.4 314.16 -0.9Q311.81 -3.2 311.81 -6.79Q311.81 -10.38 314.16 -12.66Q316.51 -14.94 320.01 -14.94Q323.52 -14.94 325.84 -12.64Q328.15 -10.35 328.15 -6.76Q328.15 -3.17 325.84 -0.88Q323.52 1.4 320.01 1.4Z" fill="#A06D22"/>
+</svg><svg class="on-dark" xmlns="http://www.w3.org/2000/svg" viewBox="-42.98 -118.60 419.73 168.60" aria-hidden="true" focusable="false">
+<rect x="-42.98" y="-118.60" width="419.73" height="168.60" fill="#1A1D2B"/><path d="M5.62 0V-12.62L34.74 -39.21V-40.6H6.62V-49.25H45.85V-36.63L16.69 -10.04V-8.65H46.65V0ZM79.06 1.4Q71.62 1.4 66.01 -1.75Q60.39 -4.9 57.26 -10.63Q54.13 -16.37 54.13 -24.03V-25.23Q54.13 -32.92 57.23 -38.64Q60.33 -44.35 65.88 -47.5Q71.42 -50.65 78.68 -50.65Q85.81 -50.65 91.16 -47.54Q96.5 -44.43 99.5 -38.82Q102.5 -33.21 102.5 -25.68V-21.76H64.55Q64.79 -15.27 68.96 -11.45Q73.14 -7.64 79.32 -7.64Q85.14 -7.64 88.08 -10.22Q91.02 -12.8 92.56 -16.2L101.15 -11.84Q99.71 -9 97.06 -5.92Q94.41 -2.83 90.08 -0.72Q85.75 1.4 79.06 1.4ZM64.65 -29.7H92.05Q91.65 -35.25 88.02 -38.43Q84.39 -41.61 78.62 -41.61Q72.75 -41.61 69.12 -38.43Q65.49 -35.25 64.65 -29.7ZM111.93 0V-49.25H122.02V-41.88H123.61Q125.02 -44.93 128.6 -47.53Q132.18 -50.12 139.27 -50.12Q144.89 -50.12 149.26 -47.63Q153.63 -45.13 156.11 -40.55Q158.6 -35.97 158.6 -29.6V0H148.31V-28.81Q148.31 -35.25 145.12 -38.29Q141.93 -41.34 136.27 -41.34Q129.88 -41.34 126.05 -37.1Q122.22 -32.87 122.22 -24.89V0ZM170.43 0V-70H180.72V0ZM193.03 0V-49.25H203.32V0ZM198.18 -55.96Q195.2 -55.96 193.14 -57.91Q191.09 -59.87 191.09 -62.98Q191.09 -66.13 193.14 -68.06Q195.2 -70 198.18 -70Q201.26 -70 203.26 -68.06Q205.26 -66.13 205.26 -62.98Q205.26 -59.87 203.26 -57.91Q201.26 -55.96 198.18 -55.96ZM234.14 0Q229.59 0 226.92 -2.68Q224.26 -5.37 224.26 -9.94V-40.6H210.74V-49.25H224.26V-65.63H234.55V-49.25H249.34V-40.6H234.55V-11.65Q234.55 -8.65 237.42 -8.65H247.65V0ZM280.96 1.4Q273.52 1.4 267.91 -1.75Q262.29 -4.9 259.16 -10.63Q256.03 -16.37 256.03 -24.03V-25.23Q256.03 -32.92 259.13 -38.64Q262.23 -44.35 267.78 -47.5Q273.32 -50.65 280.58 -50.65Q287.71 -50.65 293.06 -47.54Q298.4 -44.43 301.4 -38.82Q304.4 -33.21 304.4 -25.68V-21.76H266.45Q266.69 -15.27 270.86 -11.45Q275.04 -7.64 281.22 -7.64Q287.04 -7.64 289.98 -10.22Q292.92 -12.8 294.46 -16.2L303.05 -11.84Q301.61 -9 298.96 -5.92Q296.31 -2.83 291.98 -0.72Q287.65 1.4 280.96 1.4ZM266.55 -29.7H293.95Q293.55 -35.25 289.92 -38.43Q286.29 -41.61 280.52 -41.61Q274.65 -41.61 271.02 -38.43Q267.39 -35.25 266.55 -29.7Z" fill="#EFEAE0"/><path d="M320.01 1.4Q316.51 1.4 314.16 -0.9Q311.81 -3.2 311.81 -6.79Q311.81 -10.38 314.16 -12.66Q316.51 -14.94 320.01 -14.94Q323.52 -14.94 325.84 -12.64Q328.15 -10.35 328.15 -6.76Q328.15 -3.17 325.84 -0.88Q323.52 1.4 320.01 1.4Z" fill="#A06D22"/>
+</svg></a><nav aria-label="Site"><a href="/a/">Articles</a></nav></header>
+<main id="main">
+<article>
+<p class="eyebrow">Field Guide · For engineers</p>
+<h1>A seeded bug: does the AI review find it?</h1>
+<p class="lede">Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.</p>
+<p class="meta"><time datetime="2026-11-02">2 Nov 2026</time> · 4 min read · sources read up to 2 Nov 2026</p>
+<div class="rule" role="presentation"></div>
+<p>Your tests are green and the diff looks fine. You ask an AI to review it before you merge. But you have never seen that reviewer miss anything, or catch anything, so its "looks good" means very little yet. This is part 1 of the Field Guide series on code review with AI: one job, tested in a real run, with the catch said plainly. </p>
+<h2 id="the-job-test-the-reviewer-first">The job: test the reviewer first</h2>
+<p>Plant a bug you already know about, in a small diff, and see if the review finds it. The demo repo here was written for this test: a tiny order list with a commit that adds pages. The docstring says page 1 is the first 10 orders. One line gets the start wrong, so page 1 skips them. The 4 tests in the repo still pass, because the only paging test checks that page 1 has 10 orders, not which ones. </p>
+<pre tabindex="0"><code class=language-python>def paginate(orders, page, per_page=10):
+    """Return one page of orders. Pages start at 1: page 1 is the first 10 orders."""
+    if page &lt; 1:
+        raise ValueError("page starts at 1")
+    start = page * per_page
+    return orders[start:start + per_page]</code></pre>
+<p>Claude Code works inside your project folder: it reads the files, runs commands such as your tests, and edits code when you ask it to fix something <sup class="cite" aria-label="source 1">[<a href="#src-1">1</a>]</sup>. So the prompt can ask for all three. </p>
+<p>The wrong line is <code>start = page * per_page</code>: page 1 should start at order 0, but it starts at order 10. </p>
+<pre tabindex="0"><code class=language-text>Review my last commit for bugs. For each bug, give the file and line, say what goes wrong, and fix it. Then run the tests.</code></pre>
+<h2 id="how-it-was-tested">How it was tested</h2>
+<p>One run on 2 November 2026, in the Claude Code desktop app on Windows, on a personal paid plan. It was a fresh agent with no chat history, started by another Claude Code session in the same app and pointed at the demo repo. Besides the prompt, the agent was told only that it was Claude Code working in the demo folder, to touch nothing outside it, and not to commit. Claude is 18+ <sup class="cite" aria-label="source 2">[<a href="#src-2">2</a>]</sup>. Four checks were written down before the prompt was sent, plus a hidden check for the fix that the review never saw: </p>
+<ol><li>Finds it: names the start line in <code>paginate()</code> without being told where to look. </li><li>Explains it: says what goes wrong for a user. </li><li>Fixes it: the fix passes the hidden check (page 1 is orders 1 to 10, page 3 is orders 21 to 25) and the old tests still pass. </li><li>No false alarms: nothing it calls a bug is correct code. </li></ol>
+<h2 id="what-came-back">What came back</h2>
+<p>About 25 seconds later it named <code>orders.py</code>, line 18, quoted the line, and said the docstring promises pages from 1 while the maths counts from 0. So page 1 returns orders 10 to 19, the first 10 never show on any page, and the last page comes back empty. It changed the line to <code>start = (page - 1) * per_page</code>, ran the tests, and said <code>page_count</code> and the <code>page &lt; 1</code> check were right. The hidden check passed. All 4 checks passed. </p>
+<h2 id="the-catch">The catch</h2>
+<p>The tests. All 4 passed on the buggy code, and the review said so: the paging test only counted the orders on page 1. It added a test that checks which orders are on each page, and that test fails on the old line. A green test run is not a review. Keep the test it writes, and read the fix before you accept it. </p>
+<h2 id="the-stamp">The stamp</h2>
+<p><strong>Works</strong> · 2 Nov 2026 · Claude Code, paid plan · 4 of 4 checks, no miss. It found, explained and fixed the one seeded bug, with no false alarms. One planted bug in a 13-line diff is the easy case, and one run is one run. Part 2 tries a small diff with more than one problem. </p>
+<h2 id="before-you-use-it">Before you use it</h2>
+<p>Try it on your own code, or a demo repo like this one, never on your employer's code from a personal account. Run your own check on any fix it makes; a fix that passes the old tests can still be wrong. </p>
+<h2 id="the-raw-answer-word-for-word">The raw answer, word for word</h2>
+<p>The one edit is the local folder path, replaced with <code>&lt;demo folder&gt;</code>.</p>
+<pre tabindex="0"><code class=language-text>I found one bug in your last commit, eaebb95 "Add pagination to the order list", and fixed it. All 5 tests pass now. Nothing is committed.
+
+**The bug: `orders.py`, line 18, in `paginate`**
+start = page * per_page
+
+The docstring says pages start at 1, but this line works out the start as if they started at 0. So page 1 returns orders 10–19 instead of 0–9. The first 10 orders never show up on any page, and the last page (page 3 of 25 orders) comes back empty.
+
+Fix:
+start = (page - 1) * per_page
+
+**Why the tests didn't catch it:** `test_page_size` only checks that page 1 has 10 items. With the bug, page 1 still has 10 items, just the wrong ones. All 4 tests passed on the buggy code (I ran them before changing anything).
+
+**Test added: `tests/test_orders.py`, new `test_page_contents`.** With 25 orders, it checks that page 1 is orders 0–9, page 3 is orders 20–24, and the page after the last one is empty. This test fails on the old line and passes with the fix.
+
+The rest of the commit looks right: `page_count` (ceiling division, 0 pages for an empty list) and the `page &lt; 1` check.
+
+**Test run:** `python -m pytest` gives 5 passed. pytest also prints a warning from the pytest-asyncio plugin about an unset fixture loop scope. It comes from the plugin's settings, not your code.
+
+Files changed (not committed):
+- `&lt;demo folder&gt;/shop-orders/orders.py`
+- `&lt;demo folder&gt;/shop-orders/tests/test_orders.py`</code></pre>
+<p>The code fences inside the answer (three backticks and <code>python</code>) are left out above so the block shows as one piece; the words are unchanged.</p>
+<h2 id="the-diff-the-review-saw">The diff the review saw</h2>
+<p>The last commit, exactly as the review saw it. No comment marks the wrong line.</p>
+<pre tabindex="0"><code class=language-diff>diff --git a/orders.py b/orders.py
+index 25fcaae..16524b1 100644
+--- a/orders.py
++++ b/orders.py
+@@ -4,3 +4,16 @@
+ def order_total(items):
+     """Sum of price * qty for each line."""
+     return sum(i["price"] * i["qty"] for i in items)
++
++
++def page_count(orders, per_page=10):
++    """How many pages the order list needs."""
++    return (len(orders) + per_page - 1) // per_page
++
++
++def paginate(orders, page, per_page=10):
++    """Return one page of orders. Pages start at 1: page 1 is the first 10 orders."""
++    if page &lt; 1:
++        raise ValueError("page starts at 1")
++    start = page * per_page
++    return orders[start:start + per_page]</code></pre>
+<h2 id="the-test-log">The test log</h2>
+<ul><li><strong>Run:</strong> 2 Nov 2026, Claude Code desktop app (Windows), personal paid plan, a fresh agent with no chat history started by another Claude Code session, about 25 seconds. Checks written before the run. </li><li><strong>Screens:</strong> the slides show the run's own text (the diff and the answer), displayed as plain text and cropped; words unchanged, the brass boxes are the only marks added. </li></ul>
+<ol><li>Finds it, without a hint: <strong>pass.</strong> It named <code>orders.py</code> line 18, <code>start = page * per_page</code>. </li><li>Explains it: <strong>pass.</strong> Page 1 returns orders 10 to 19, the first 10 never show, the last page comes back empty. </li><li>Fixes it: <strong>pass.</strong> <code>(page - 1) * per_page</code>; the hidden test below passed, and so did the 4 old tests plus the one it added. </li><li>No false alarms: <strong>pass.</strong> It called <code>page_count</code> and the <code>page &lt; 1</code> check right. </li></ol>
+<p>The hidden test, written before the run and never shown to the review:</p>
+<pre tabindex="0"><code class=language-python># Hidden check, written before the run: page 1 must be the first 10 orders, the last page must not be empty.
+import sys; sys.path.insert(0, sys.argv[1])
+from orders import paginate, page_count
+o = list(range(1, 26))
+assert paginate(o, 1) == list(range(1, 11)), paginate(o, 1)
+assert paginate(o, 3) == [21, 22, 23, 24, 25], paginate(o, 3)
+assert all(paginate(o, p) for p in range(1, page_count(o) + 1))
+print("hidden check: PASS")</code></pre>
+<p>Stamp: <strong>Works</strong>, 4 of 4 checks, no miss. </p>
+<p>Next in the series, part 2: a small diff with more than one problem. </p>
+<section class="sources" aria-labelledby="sources-h">
+<h2 id="sources-h">Sources</h2>
+<p>Each source was opened and read on the date shown. Numbers in square brackets in the text point here.</p>
+<ol>
+<li id="src-1"><a href="https://code.claude.com/docs/en/common-workflows">Claude Code docs: Common workflows (fix bugs, work with tests)</a><span class="when">code.claude.com · read 2 Nov 2026</span></li>
+<li id="src-2"><a href="https://www.anthropic.com/legal/consumer-terms">Anthropic Consumer Terms of Service: minimum age 18 (effective October 8, 2025)</a><span class="when">anthropic.com · read 2 Nov 2026</span></li>
+</ol>
+</section>
+</article>
+</main>
+<footer class="site">
+<p>Researched and drafted with AI assistance; checked by a human.</p>
+<p>zenlite is independent of Anthropic. Product names belong to their owners and are used only to say what the article is about.</p>
+<p>Non-commercial. No ads, no tracking, no cookies. <a href="/">zenlite.ai</a> · <a href="/a/">All articles</a></p>
+</footer>
+</div>
+</body>
+</html>
