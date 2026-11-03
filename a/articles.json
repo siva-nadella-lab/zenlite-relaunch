@@ -32,6 +32,14 @@
     "reading_minutes": 6
   },
   {
+    "slug": "field-guide-agents-1-read-only-first",
+    "title": "Read-only first: what an agent can touch",
+    "description": "Field Guide, Agents set up safely, part 1. What Claude Code's default mode does alone and what it asks first, tested in a demo repo, with the catch.",
+    "audience": "engineers",
+    "date": "2026-11-03",
+    "reading_minutes": 4
+  },
+  {
     "slug": "field-guide-code-review-1-seeded-bug",
     "title": "A seeded bug: does the AI review find it?",
     "description": "Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.",
