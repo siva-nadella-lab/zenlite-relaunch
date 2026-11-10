@@ -104,6 +104,14 @@
     "reading_minutes": 5
   },
   {
+    "slug": "field-guide-fooled-1-open-every-source",
+    "title": "Open every source",
+    "description": "Field Guide, Don't get fooled by AI, part 1 of 6. Free ChatGPT gave a link for every UPI fact and every fact was right, but its first link was a dead page.",
+    "audience": "general",
+    "date": "2026-11-11",
+    "reading_minutes": 5
+  },
+  {
     "slug": "field-guide-plan-your-study-1-year-plan",
     "title": "A month-by-month plan from your subject list",
     "description": "Field Guide, Plan your study (medical students), part 1. A month-by-month plan from your subjects and real hours, tested on free ChatGPT, with the catch.",
