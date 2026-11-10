@@ -64,6 +64,14 @@
     "reading_minutes": 6
   },
   {
+    "slug": "field-guide-code-review-3-risky-lines",
+    "title": "Ask for the risky lines only",
+    "description": "Field Guide, Code review with AI, part 3 of 6. Two risky lines in a 132-line commit, and a prompt that asks for only those. Tested in Claude Code.",
+    "audience": "engineers",
+    "date": "2026-11-10",
+    "reading_minutes": 6
+  },
+  {
     "slug": "field-guide-exam-prep-1-revision-plan",
     "title": "Your last 7 days: a revision plan from your topic list",
     "description": "Field Guide, Exam prep with AI, part 1 of 6. A 7-day revision plan from your own topic list, tested on free ChatGPT: what worked and the catch.",
