@@ -160,6 +160,14 @@
     "reading_minutes": 5
   },
   {
+    "slug": "field-guide-study-4-key-points",
+    "title": "5 key points, and what it leaves out",
+    "description": "Study with AI, part 4 of 6. Key points from your own notes plus what it left out, tested on free ChatGPT: right points, a left-out list that didn't add up.",
+    "audience": "general",
+    "date": "2026-11-12",
+    "reading_minutes": 5
+  },
+  {
     "slug": "gemini-cli-untrusted-folder-read-only",
     "title": "Gemini CLI 0.65.0 won't rewrite an untrusted repo's settings",
     "description": "From 0.65.0, Gemini CLI won't write a repo's settings file in an untrusted folder. What the fix covers, what was already true, and what to check.",
