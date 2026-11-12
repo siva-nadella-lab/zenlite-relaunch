@@ -48,6 +48,14 @@
     "reading_minutes": 6
   },
   {
+    "slug": "field-guide-agents-3-permission-lists",
+    "title": "Permission lists that stay small",
+    "description": "Field Guide, Agents set up safely, part 3 of 6. A three-rule allow list in Claude Code, tested with Opus 5.5: what it let through, what it stopped, the catch.",
+    "audience": "engineers",
+    "date": "2026-11-11",
+    "reading_minutes": 7
+  },
+  {
     "slug": "field-guide-code-review-1-seeded-bug",
     "title": "A seeded bug: does the AI review find it?",
     "description": "Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.",
@@ -157,6 +165,14 @@
     "description": "Field Guide, Study with AI, part 3 of 6. Your own notes explained in 5 minutes of reading, tested on free ChatGPT: right, but 3 words never explained.",
     "audience": "general",
     "date": "2026-11-09",
+    "reading_minutes": 5
+  },
+  {
+    "slug": "field-guide-study-4-key-points",
+    "title": "5 key points, and what it leaves out",
+    "description": "Study with AI, part 4 of 6. Key points from your own notes plus what it left out, tested on free ChatGPT: right points, a left-out list that didn't add up.",
+    "audience": "general",
+    "date": "2026-11-12",
     "reading_minutes": 5
   },
   {
