@@ -56,6 +56,14 @@
     "reading_minutes": 7
   },
   {
+    "slug": "field-guide-agents-4-checkpoints",
+    "title": "An undo button: a git checkpoint first",
+    "description": "Field Guide, Agents set up safely, part 4 of 6. One sentence made Claude Code commit before it edited. Tested with Opus 5.5: the undo, and the catch.",
+    "audience": "engineers",
+    "date": "2026-11-14",
+    "reading_minutes": 4
+  },
+  {
     "slug": "field-guide-code-review-1-seeded-bug",
     "title": "A seeded bug: does the AI review find it?",
     "description": "Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.",
@@ -126,6 +134,14 @@
     "audience": "general",
     "date": "2026-11-11",
     "reading_minutes": 5
+  },
+  {
+    "slug": "field-guide-fooled-2-made-up-fact",
+    "title": "The made-up fact test",
+    "description": "Field Guide, Don't get fooled by AI, part 2 of 6. Free ChatGPT, asked about a medal made up for the test, named nobody and invented nothing.",
+    "audience": "general",
+    "date": "2026-11-14",
+    "reading_minutes": 4
   },
   {
     "slug": "field-guide-plan-your-study-1-year-plan",
