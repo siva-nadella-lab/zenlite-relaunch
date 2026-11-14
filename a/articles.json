@@ -88,6 +88,14 @@
     "reading_minutes": 6
   },
   {
+    "slug": "field-guide-code-review-4-own-checklist",
+    "title": "Review against your own checklist",
+    "description": "Field Guide, Code review with AI, part 4 of 6. A five-rule team checklist, a commit that breaks two rules, one Claude Code run on Opus 5.5.",
+    "audience": "engineers",
+    "date": "2026-11-13",
+    "reading_minutes": 6
+  },
+  {
     "slug": "field-guide-exam-prep-1-revision-plan",
     "title": "Your last 7 days: a revision plan from your topic list",
     "description": "Field Guide, Exam prep with AI, part 1 of 6. A 7-day revision plan from your own topic list, tested on free ChatGPT: what worked and the catch.",
@@ -165,6 +173,14 @@
     "description": "Plan your study (medical students), part 3: revision rounds dated for four subjects, tested on free ChatGPT. Every date right; glance at a calendar once.",
     "audience": "med-students",
     "date": "2026-11-10",
+    "reading_minutes": 4
+  },
+  {
+    "slug": "field-guide-plan-your-study-4-weak-subjects",
+    "title": "Weak subjects from your own test marks",
+    "description": "Plan your study (medical students), part 4: weak subjects found from practice test marks and revision hours split, tested on free ChatGPT.",
+    "audience": "med-students",
+    "date": "2026-11-13",
     "reading_minutes": 4
   },
   {

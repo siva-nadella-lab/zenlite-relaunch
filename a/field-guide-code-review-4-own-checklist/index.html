@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review against your own checklist | zenlite.</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EFEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1D2B" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InplbmxpdGUgTm9ydGggc3ltYm9sIChkYXJrKSI+PHRpdGxlPnplbmxpdGUgTm9ydGggc3ltYm9sIChkYXJrKTwvdGl0bGU+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjMUExRDJCIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAzKSI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNFRkVBRTAiIHN0cm9rZS13aWR0aD0iNCIvPgo8cG9seWdvbiBwb2ludHM9IjUwLDExIDM4LjUsNjggNTAsNjAiIGZpbGw9IiNBMDZEMjIiLz4KPHBvbHlnb24gcG9pbnRzPSI1MCwxMSA1MCw2MCA2MS41LDY4IiBmaWxsPSIjMUExRDJCIiBzdHJva2U9IiNBMDZEMjIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+Cjwvc3ZnPgo=">
+<meta name="description" content="Field Guide, Code review with AI, part 4 of 6. A five-rule team checklist, a commit that breaks two rules, one Claude Code run on Opus 5.5.">
+<link rel="canonical" href="https://zenlite.ai/a/field-guide-code-review-4-own-checklist/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="zenlite.">
+<meta property="og:title" content="Review against your own checklist">
+<meta property="og:description" content="Field Guide, Code review with AI, part 4 of 6. A five-rule team checklist, a commit that breaks two rules, one Claude Code run on Opus 5.5.">
+<meta property="og:url" content="https://zenlite.ai/a/field-guide-code-review-4-own-checklist/">
+<meta property="og:image" content="https://zenlite.ai/a/field-guide-code-review-4-own-checklist/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Review against your own checklist, an article on zenlite.">
+<meta property="article:published_time" content="2026-11-13">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Review against your own checklist">
+<meta name="twitter:description" content="Field Guide, Code review with AI, part 4 of 6. A five-rule team checklist, a commit that breaks two rules, one Claude Code run on Opus 5.5.">
+<meta name="twitter:image" content="https://zenlite.ai/a/field-guide-code-review-4-own-checklist/og.png">
+<style>@font-face{font-family:'Space Grotesk';font-weight:300 700;font-style:normal;font-display:swap;src:local('Space Grotesk'),url('/fonts/space-grotesk-latin.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;font-style:normal;font-display:swap;src:local('JetBrains Mono'),url('/fonts/jetbrains-mono-latin.woff2') format('woff2')}
+:root{--ink:#1A1D2B;--paper:#EFEAE0;--brass:#A06D22;--bg:var(--paper);--fg:var(--ink);--muted:rgba(26,29,43,.78);--rule:rgba(26,29,43,.28);--soft:rgba(26,29,43,.06);
+--code-bg:#1A1D2B;--code-fg:#EFEAE0;--sans:'Space Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,'Cascadia Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:var(--ink);--fg:var(--paper);--muted:rgba(239,234,224,.8);--rule:rgba(239,234,224,.3);--soft:rgba(239,234,224,.07);--code-bg:rgba(239,234,224,.07)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:1.125rem;line-height:1.65}
+.wrap{max-width:42rem;margin:0 auto;padding:0 16px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--fg);color:var(--bg);padding:8px 12px;z-index:9}
+.skip:focus{left:8px}
+a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:3px}
+a:focus-visible,pre:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 0 18px}
+.wm{display:block;width:132px;line-height:0}.wm svg{width:100%;height:auto}
+.wm .on-dark{display:none}
+@media (prefers-color-scheme:dark){.wm .on-light{display:none}.wm .on-dark{display:block}}
+nav a{font-weight:500;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow{margin:28px 0 0;font-weight:500;font-size:.85rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+h1{margin:10px 0 0;font-weight:700;font-size:clamp(2rem,7.4vw,3rem);line-height:1.08;letter-spacing:-.01em;overflow-wrap:break-word}
+.dot{color:var(--brass)}
+.lede{margin:18px 0 0;font-size:1.2rem;line-height:1.5;color:var(--muted)}
+.meta{margin:18px 0 0;font-size:.95rem;color:var(--muted)}
+.rule{height:3px;width:56px;background:var(--brass);margin:26px 0 8px}
+article h2{margin:2.4rem 0 .4rem;font-weight:700;font-size:1.55rem;line-height:1.2;padding-top:.9rem;border-top:1px solid var(--rule)}
+article h3{margin:1.8rem 0 .2rem;font-weight:700;font-size:1.2rem;line-height:1.3}
+p,ul,ol,blockquote,.tw,pre{margin:1rem 0}
+li{margin:.35rem 0}
+ul,ol{padding-left:1.4rem}
+blockquote{margin-left:0;padding:.1rem 0 .1rem 1rem;border-left:4px solid var(--brass)}
+blockquote p{margin:.5rem 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--soft);padding:.08em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code-bg);color:var(--code-fg);padding:14px 16px;border-radius:8px;overflow-x:auto;line-height:1.5;font-size:.9rem;border:1px solid var(--rule)}
+pre code{background:none;padding:0;font-size:inherit;color:inherit;overflow-wrap:normal}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.98rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px 9px 0;border-top:1px solid var(--rule)}
+th{font-weight:700;border-top:0;border-bottom:2px solid var(--fg)}
+sup.cite{font-size:.72em;line-height:0;margin-left:1px}
+sup.cite a{text-decoration-thickness:1px}
+.sources{margin-top:2.6rem}
+.sources ol{padding-left:1.6rem}
+.sources li{margin:.7rem 0;overflow-wrap:anywhere}
+.sources .when{display:block;font-size:.92rem;color:var(--muted)}
+footer.site{margin-top:3.2rem;padding:22px 0 44px;border-top:1px solid var(--rule);font-size:.92rem;color:var(--muted)}
+footer.site p{margin:.5rem 0}
+.list{list-style:none;padding:0}
+.list li{margin:0;padding:22px 0;border-top:1px solid var(--rule)}
+.list h2{margin:0;padding:0;border:0;font-size:1.35rem}
+.list p{margin:.4rem 0 0}
+.list .meta{margin-top:.4rem;font-size:.9rem}
+@media (min-width:700px){body{font-size:1.2rem}header.site{padding-top:28px}.wm{width:150px}}
+@media print{body{background:#fff;color:#000}a{color:#000}.wm .on-dark{display:none}nav{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="wrap">
+<header class="site"><a class="wm" href="/" aria-label="zenlite. home"><svg class="on-light" xmlns="http://www.w3.org/2000/svg" viewBox="-42.98 -118.60 419.73 168.60" aria-hidden="true" focusable="false">
+<rect x="-42.98" y="-118.60" width="419.73" height="168.60" fill="#EFEAE0"/><path d="M5.62 0V-12.62L34.74 -39.21V-40.6H6.62V-49.25H45.85V-36.63L16.69 -10.04V-8.65H46.65V0ZM79.06 1.4Q71.62 1.4 66.01 -1.75Q60.39 -4.9 57.26 -10.63Q54.13 -16.37 54.13 -24.03V-25.23Q54.13 -32.92 57.23 -38.64Q60.33 -44.35 65.88 -47.5Q71.42 -50.65 78.68 -50.65Q85.81 -50.65 91.16 -47.54Q96.5 -44.43 99.5 -38.82Q102.5 -33.21 102.5 -25.68V-21.76H64.55Q64.79 -15.27 68.96 -11.45Q73.14 -7.64 79.32 -7.64Q85.14 -7.64 88.08 -10.22Q91.02 -12.8 92.56 -16.2L101.15 -11.84Q99.71 -9 97.06 -5.92Q94.41 -2.83 90.08 -0.72Q85.75 1.4 79.06 1.4ZM64.65 -29.7H92.05Q91.65 -35.25 88.02 -38.43Q84.39 -41.61 78.62 -41.61Q72.75 -41.61 69.12 -38.43Q65.49 -35.25 64.65 -29.7ZM111.93 0V-49.25H122.02V-41.88H123.61Q125.02 -44.93 128.6 -47.53Q132.18 -50.12 139.27 -50.12Q144.89 -50.12 149.26 -47.63Q153.63 -45.13 156.11 -40.55Q158.6 -35.97 158.6 -29.6V0H148.31V-28.81Q148.31 -35.25 145.12 -38.29Q141.93 -41.34 136.27 -41.34Q129.88 -41.34 126.05 -37.1Q122.22 -32.87 122.22 -24.89V0ZM170.43 0V-70H180.72V0ZM193.03 0V-49.25H203.32V0ZM198.18 -55.96Q195.2 -55.96 193.14 -57.91Q191.09 -59.87 191.09 -62.98Q191.09 -66.13 193.14 -68.06Q195.2 -70 198.18 -70Q201.26 -70 203.26 -68.06Q205.26 -66.13 205.26 -62.98Q205.26 -59.87 203.26 -57.91Q201.26 -55.96 198.18 -55.96ZM234.14 0Q229.59 0 226.92 -2.68Q224.26 -5.37 224.26 -9.94V-40.6H210.74V-49.25H224.26V-65.63H234.55V-49.25H249.34V-40.6H234.55V-11.65Q234.55 -8.65 237.42 -8.65H247.65V0ZM280.96 1.4Q273.52 1.4 267.91 -1.75Q262.29 -4.9 259.16 -10.63Q256.03 -16.37 256.03 -24.03V-25.23Q256.03 -32.92 259.13 -38.64Q262.23 -44.35 267.78 -47.5Q273.32 -50.65 280.58 -50.65Q287.71 -50.65 293.06 -47.54Q298.4 -44.43 301.4 -38.82Q304.4 -33.21 304.4 -25.68V-21.76H266.45Q266.69 -15.27 270.86 -11.45Q275.04 -7.64 281.22 -7.64Q287.04 -7.64 289.98 -10.22Q292.92 -12.8 294.46 -16.2L303.05 -11.84Q301.61 -9 298.96 -5.92Q296.31 -2.83 291.98 -0.72Q287.65 1.4 280.96 1.4ZM266.55 -29.7H293.95Q293.55 -35.25 289.92 -38.43Q286.29 -41.61 280.52 -41.61Q274.65 -41.61 271.02 -38.43Q267.39 -35.25 266.55 -29.7Z" fill="#1A1D2B"/><path d="M320.01 1.4Q316.51 1.4 314.16 -0.9Q311.81 -3.2 311.81 -6.79Q311.81 -10.38 314.16 -12.66Q316.51 -14.94 320.01 -14.94Q323.52 -14.94 325.84 -12.64Q328.15 -10.35 328.15 -6.76Q328.15 -3.17 325.84 -0.88Q323.52 1.4 320.01 1.4Z" fill="#A06D22"/>
+</svg><svg class="on-dark" xmlns="http://www.w3.org/2000/svg" viewBox="-42.98 -118.60 419.73 168.60" aria-hidden="true" focusable="false">
+<rect x="-42.98" y="-118.60" width="419.73" height="168.60" fill="#1A1D2B"/><path d="M5.62 0V-12.62L34.74 -39.21V-40.6H6.62V-49.25H45.85V-36.63L16.69 -10.04V-8.65H46.65V0ZM79.06 1.4Q71.62 1.4 66.01 -1.75Q60.39 -4.9 57.26 -10.63Q54.13 -16.37 54.13 -24.03V-25.23Q54.13 -32.92 57.23 -38.64Q60.33 -44.35 65.88 -47.5Q71.42 -50.65 78.68 -50.65Q85.81 -50.65 91.16 -47.54Q96.5 -44.43 99.5 -38.82Q102.5 -33.21 102.5 -25.68V-21.76H64.55Q64.79 -15.27 68.96 -11.45Q73.14 -7.64 79.32 -7.64Q85.14 -7.64 88.08 -10.22Q91.02 -12.8 92.56 -16.2L101.15 -11.84Q99.71 -9 97.06 -5.92Q94.41 -2.83 90.08 -0.72Q85.75 1.4 79.06 1.4ZM64.65 -29.7H92.05Q91.65 -35.25 88.02 -38.43Q84.39 -41.61 78.62 -41.61Q72.75 -41.61 69.12 -38.43Q65.49 -35.25 64.65 -29.7ZM111.93 0V-49.25H122.02V-41.88H123.61Q125.02 -44.93 128.6 -47.53Q132.18 -50.12 139.27 -50.12Q144.89 -50.12 149.26 -47.63Q153.63 -45.13 156.11 -40.55Q158.6 -35.97 158.6 -29.6V0H148.31V-28.81Q148.31 -35.25 145.12 -38.29Q141.93 -41.34 136.27 -41.34Q129.88 -41.34 126.05 -37.1Q122.22 -32.87 122.22 -24.89V0ZM170.43 0V-70H180.72V0ZM193.03 0V-49.25H203.32V0ZM198.18 -55.96Q195.2 -55.96 193.14 -57.91Q191.09 -59.87 191.09 -62.98Q191.09 -66.13 193.14 -68.06Q195.2 -70 198.18 -70Q201.26 -70 203.26 -68.06Q205.26 -66.13 205.26 -62.98Q205.26 -59.87 203.26 -57.91Q201.26 -55.96 198.18 -55.96ZM234.14 0Q229.59 0 226.92 -2.68Q224.26 -5.37 224.26 -9.94V-40.6H210.74V-49.25H224.26V-65.63H234.55V-49.25H249.34V-40.6H234.55V-11.65Q234.55 -8.65 237.42 -8.65H247.65V0ZM280.96 1.4Q273.52 1.4 267.91 -1.75Q262.29 -4.9 259.16 -10.63Q256.03 -16.37 256.03 -24.03V-25.23Q256.03 -32.92 259.13 -38.64Q262.23 -44.35 267.78 -47.5Q273.32 -50.65 280.58 -50.65Q287.71 -50.65 293.06 -47.54Q298.4 -44.43 301.4 -38.82Q304.4 -33.21 304.4 -25.68V-21.76H266.45Q266.69 -15.27 270.86 -11.45Q275.04 -7.64 281.22 -7.64Q287.04 -7.64 289.98 -10.22Q292.92 -12.8 294.46 -16.2L303.05 -11.84Q301.61 -9 298.96 -5.92Q296.31 -2.83 291.98 -0.72Q287.65 1.4 280.96 1.4ZM266.55 -29.7H293.95Q293.55 -35.25 289.92 -38.43Q286.29 -41.61 280.52 -41.61Q274.65 -41.61 271.02 -38.43Q267.39 -35.25 266.55 -29.7Z" fill="#EFEAE0"/><path d="M320.01 1.4Q316.51 1.4 314.16 -0.9Q311.81 -3.2 311.81 -6.79Q311.81 -10.38 314.16 -12.66Q316.51 -14.94 320.01 -14.94Q323.52 -14.94 325.84 -12.64Q328.15 -10.35 328.15 -6.76Q328.15 -3.17 325.84 -0.88Q323.52 1.4 320.01 1.4Z" fill="#A06D22"/>
+</svg></a><nav aria-label="Site"><a href="/a/">Articles</a></nav></header>
+<main id="main">
+<article>
+<p class="eyebrow">Field Guide · For engineers</p>
+<h1>Review against your own checklist<span class="dot">.</span></h1>
+<p class="lede">Field Guide, Code review with AI, part 4 of 6. A five-rule team checklist, a commit that breaks two rules, one Claude Code run on Opus 5.5.</p>
+<p class="meta"><time datetime="2026-11-13">13 Nov 2026</time> · 6 min read · sources read up to 13 Nov 2026</p>
+<div class="rule" role="presentation"></div>
+<p>If your team has a review checklist, it probably sits in the repo. Everyone agreed to it once, and on a busy day it's easy to skip. Part 3 of this series asked an AI review for only the risky lines. This is part 4 of the Field Guide series on code review with AI: hand it the team's own checklist instead, ask for a verdict on every rule, run it once for real, and say the catch plainly. </p>
+<h2 id="the-job-five-rules-one-commit">The job: five rules, one commit</h2>
+<p>The demo repo here was written for this test: a made-up corner shop with orders, checkout and gift cards. Its <code>REVIEW_CHECKLIST.md</code> has five rules: </p>
+<ol><li>Money is stored and added up in whole paise (int). Never convert to rupees with float maths. </li><li>Every new public function has at least one test in tests/. </li><li>SQL uses ? parameters. Never build a query with an f-string, + or format(). </li><li>Logs never show a full card number, gift card code, phone number or email. The last 4 characters are fine. </li><li>Text a customer sees comes from messages.py, not a string typed in the code. </li></ol>
+<p>One commit, "Add gift cards at checkout", touches 6 files: 78 lines in, 4 out. Its 5 tests all pass. Two rules are broken in it: <code>redeem</code> in <code>gift_cards.py</code> turns paise into rupees with float maths and back with <code>int()</code>, which can drop a paisa (rule 1), and a new public function, <code>top_up</code>, has no test (rule 2). The other three rules are kept, with some lines that look like breaches but aren't: an f-string in a log line (not SQL), a log line that shows only the last 4 characters of the gift card code, and a private helper, <code>_balance</code>. </p>
+<p>The prompt: </p>
+<pre tabindex="0"><code class=language-text>Review my last commit against REVIEW_CHECKLIST.md. Go through the five rules in order. For each one, say pass or fail. For a fail, give the file and line and one sentence on what's wrong. Don't change any files.</code></pre>
+<h2 id="how-it-was-tested">How it was tested</h2>
+<p>One run on 13 November 2026, in the Claude Code CLI (version 2.1.323) on Windows, signed in on a personal paid plan. It was started once from the demo folder in one-shot mode (<code>claude -p</code>), with no session history and the session not saved <sup class="cite" aria-label="source 1">[<a href="#src-1">1</a>]</sup>. Edits were allowed without asking (<code>--permission-mode acceptEdits</code>), so leaving the files alone was its own choice, and <code>git</code> was on the allow list (<code>--allowedTools</code>), the list of tools that run without asking <sup class="cite" aria-label="source 1">[<a href="#src-1">1</a>]</sup>. The model, as the run named it: Opus 5.5 (claude-opus-5-5), the CLI default. No CLAUDE.md in the folder or its parents. It wasn't told how many rules were broken. Claude is 18+ <sup class="cite" aria-label="source 2">[<a href="#src-2">2</a>]</sup>. </p>
+<p>Five checks were written down and committed before the prompt was sent, plus a hidden check that the review never saw: </p>
+<ol><li>Marks rule 1 as a fail at the float maths in <code>gift_cards.py</code>, lines 27 to 30. </li><li>Marks rule 2 as a fail and names <code>top_up</code> (line 12) as the new public function with no test. </li><li>Marks rules 3, 4 and 5 as passes, and calls none of the look-alike lines a breach. </li><li>Goes rule by rule, in order, with file and line on every fail and one sentence each, as asked. </li><li>Changes no files. </li></ol>
+<h2 id="what-came-back">What came back</h2>
+<p>About 23 seconds later (3 turns) it opened with "Two fail and three pass. I didn't change any files." Rule 1, fail, at <code>gift_cards.py:27</code> (lines 27 to 30): the paise go to rupees with <code>/ 100</code>, the subtraction happens on floats, and <code>int(... * 100)</code> truncates on the way back, which "can store a balance one paisa too low". Rule 2, fail, at <code>gift_cards.py:12</code>: "<code>top_up</code> is a new public function and nothing in <code>tests/</code> calls it." </p>
+<p>Rules 3, 4 and 5 passed, and it said why: every query uses <code>?</code> placeholders, "The only f-string is in the log call on line 33, which isn't SQL"; the log shows only <code>code[-4:]</code>; the customer text is all <code>MSG[...]</code> entries. It hadn't changed any files: same commit, nothing changed. </p>
+<p>The hidden check, run after: a Rs 50 gift card used on a Rs 38.85 order is left with 1114 paise, not 1115 (rule 1 really does lose money), no test calls <code>top_up</code>, and the repo is unchanged. 4 of 5 checks passed. </p>
+<h2 id="the-catch">The catch</h2>
+<p>Rule 2 says every new public function has at least one test. The commit adds four new public functions. <code>add_gift_card</code> and <code>redeem</code> are tested directly, <code>top_up</code> has no test at all, and <code>format_rupees</code> has no test of its own but is checked through another test's output. Does that count? The checklist doesn't say. So the review decided: "<code>format_rupees</code> (<code>messages.py:10</code>) has no test of its own, but one test checks its output (<code>"₹200.00"</code>), so I've counted it as covered." </p>
+<p>That's a fair reading, and it said so out loud, which is the good part. But it was its call, not the team's. It also meant the one-sentence fails grew to two and three sentences. If the team means "a test of its own", the rule has to say that. </p>
+<h2 id="the-stamp">The stamp</h2>
+<p><strong>Half works</strong> · 13 Nov 2026 · Claude Code CLI on Opus 5.5 · 4 of 5 checks. It caught both broken rules with the right file and line, passed the three the commit keeps, ignored the look-alikes and changed no files. Where a rule left room, it filled the gap itself and explained it in extra sentences. Read each fail, then reread any rule it had to interpret. One run is one run, and both breaches here were planted. </p>
+<h2 id="before-you-use-it">Before you use it</h2>
+<p>Try it on your own code, or a demo repo like this one, never on your employer's code from a personal account. Keep the checklist in the repo and name the file in the prompt. Ask for pass or fail on every rule, in order, with the file and line on each fail, and say not to change files. When the answer explains a judgement, that's a rule worth rewriting. </p>
+<h2 id="the-raw-answer-word-for-word">The raw answer, word for word</h2>
+<p>Nothing was edited: no local path appeared in it.</p>
+<pre tabindex="0"><code class=language-text>I reviewed commit `6a06463` ("Add gift cards at checkout") against the five rules. Two fail and three pass. I didn't change any files.
+
+**1. Money in whole paise, no float maths: FAIL**
+`gift_cards.py:27` (lines 27–30): `redeem` converts paise to rupees with `/ 100`, does the subtraction on floats, then truncates back with `int(... * 100)`. That can store a balance one paisa too low (for example, 0.29 × 100 = 28.999…, which becomes 28).
+
+**2. Every new public function has a test: FAIL**
+`gift_cards.py:12`: `top_up` is a new public function and nothing in `tests/` calls it. `add_gift_card` and `redeem` are tested directly. `format_rupees` (`messages.py:10`) has no test of its own, but one test checks its output (`"₹200.00"`), so I've counted it as covered.
+
+**3. SQL uses `?` parameters: PASS**
+Every new query in `gift_cards.py` uses `?` placeholders. The only f-string is in the log call on line 33, which isn't SQL.
+
+**4. Logs never show full card number, gift code, phone or email: PASS**
+`gift_cards.py:33` logs only the last 4 characters (`code[-4:]`) and the order total. The checkout log shows only the order ID.
+
+**5. Customer-facing text comes from `messages.py`: PASS**
+All new customer-facing strings are `MSG[...]` entries (`gift_unknown`, `gift_empty`, `gift_used`), and the amount is formatted by `format_rupees`, which also lives in `messages.py`.</code></pre>
+<h2 id="the-code-it-was-asked-about">The code it was asked about</h2>
+<p><code>gift_cards.py</code>, the whole file, as the review read it. No comment marks the breaches. </p>
+<pre tabindex="0"><code class=language-python>import logging
+
+from messages import MSG, format_rupees
+
+log = logging.getLogger("shop.gift")
+
+
+def add_gift_card(db, code, balance_paise):
+    db.execute("INSERT INTO gift_cards (code, balance_paise) VALUES (?, ?)", (code, balance_paise))
+
+
+def top_up(db, code, amount_paise):
+    db.execute("UPDATE gift_cards SET balance_paise = balance_paise + ? WHERE code = ?", (amount_paise, code))
+
+
+def _balance(db, code):
+    row = db.execute("SELECT balance_paise FROM gift_cards WHERE code = ?", (code,)).fetchone()
+    return row[0] if row else None
+
+
+def redeem(db, code, order_total_paise):
+    left_paise = _balance(db, code)
+    if left_paise is None:
+        return {"ok": False, "msg": MSG["gift_unknown"]}
+    if left_paise == 0:
+        return {"ok": False, "msg": MSG["gift_empty"]}
+    balance_rupees = left_paise / 100
+    total_rupees = order_total_paise / 100
+    pay_rupees = min(balance_rupees, total_rupees)
+    new_balance = int((balance_rupees - pay_rupees) * 100)
+    db.execute("UPDATE gift_cards SET balance_paise = ? WHERE code = ?", (new_balance, code))
+    paid = order_total_paise if pay_rupees == total_rupees else left_paise
+    log.info(f"gift card ...{code[-4:]} used for order total {order_total_paise}")
+    return {"ok": True, "paid_paise": paid, "msg": MSG["gift_used"].format(amount=format_rupees(paid))}</code></pre>
+<p><code>messages.py</code>, the new helper: </p>
+<pre tabindex="0"><code class=language-python>def format_rupees(paise):
+    return f"₹{paise // 100}.{paise % 100:02d}"</code></pre>
+<h2 id="the-test-log">The test log</h2>
+<ul><li><strong>Run:</strong> 13 Nov 2026, Claude Code CLI 2.1.323 on Windows, personal paid plan, Opus 5.5 (claude-opus-5-5, the CLI default), one <code>claude -p</code> run in a fresh session, about 23 seconds. Checks written and committed before the run. </li><li><strong>Screens:</strong> the slides show the run's own text (the prompt and the answer), displayed as plain text and cropped; words unchanged, the brass boxes are the only marks added, and a dashed line marks words left out. </li></ul>
+<ol><li>Rule 1 fail at the float maths: <strong>pass.</strong> <code>gift_cards.py:27</code> (lines 27 to 30). Hidden check: a Rs 50 card after a Rs 38.85 order keeps 1114 paise, not 1115. </li><li>Rule 2 fail at <code>top_up</code>: <strong>pass.</strong> <code>gift_cards.py:12</code>. Hidden check: no test calls <code>top_up</code>. </li><li>Rules 3, 4 and 5 pass, no look-alike called a breach: <strong>pass.</strong> </li><li>Rule by rule, file and line, one sentence each: <strong>fail.</strong> In order, all five, file and line on both fails; but two and three sentences on the fails, the extra being its own call on <code>format_rupees</code>. </li><li>Changes no files: <strong>pass.</strong> Same commit, nothing changed, and it said so. 5 tests still pass. </li></ol>
+<p>The hidden check, written before the run and never shown to the review:</p>
+<pre tabindex="0"><code class=language-python># Hidden check for Code review with AI part 4, written 13 Nov 2026 before the run. Never shown to the agent.
+# Usage: python hidden_check.py &lt;demo repo folder&gt; &lt;commit sha before the run&gt;
+# Shows that the two seeded checklist breaches are real, and that the run left the repo unchanged.
+import pathlib, subprocess, sys
+
+repo, sha = sys.argv[1], sys.argv[2]
+sys.path.insert(0, repo)
+from db import connect
+from gift_cards import add_gift_card, redeem
+
+# Rule 1 breach (gift_cards.py lines 27-30): rupees as float, so a balance can lose a paisa.
+db = connect()
+add_gift_card(db, "GIFT-TEST-0001", 5000)          # Rs 50.00 card
+redeem(db, "GIFT-TEST-0001", 3885)                  # Rs 38.85 order
+left = db.execute("SELECT balance_paise FROM gift_cards WHERE code = ?", ("GIFT-TEST-0001",)).fetchone()[0]
+print("rule 1, Rs 50 card after a Rs 38.85 order leaves", left, "paise (should be 1115):", left != 1115)
+
+# Rule 2 breach (gift_cards.py line 12): top_up is a new public function and no test calls it.
+tests = "".join(p.read_text(encoding="utf-8") for p in pathlib.Path(repo, "tests").glob("*.py"))
+print("rule 2, top_up has no test:", "top_up" not in tests)
+
+# Bait (should pass): every query uses ? parameters; the log shows the last 4 of the code; customer text from messages.py.
+st = subprocess.run(["git", "-C", repo, "status", "--porcelain"], capture_output=True, text=True).stdout.strip()
+head = subprocess.run(["git", "-C", repo, "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+print("repo unchanged after the run:", st == "" and head == sha)</code></pre>
+<p>Its output after the run: "rule 1, Rs 50 card after a Rs 38.85 order leaves 1114 paise (should be 1115): True", "rule 2, top_up has no test: True", "repo unchanged after the run: True". </p>
+<p>Stamp: <strong>Half works</strong>, 4 of 5 checks. </p>
+<p>Next in the series, part 5: false alarms, when the review is wrong. </p>
+<section class="sources" aria-labelledby="sources-h">
+<h2 id="sources-h">Sources</h2>
+<p>Each source was opened and read on the date shown. Numbers in square brackets in the text point here.</p>
+<ol>
+<li id="src-1"><a href="https://code.claude.com/docs/en/cli-reference">Claude Code docs: CLI reference (-p, --allowedTools, --permission-mode, --no-session-persistence, --output-format)</a><span class="when">code.claude.com · read 13 Nov 2026</span></li>
+<li id="src-2"><a href="https://www.anthropic.com/legal/consumer-terms">Anthropic Consumer Terms of Service: minimum age 18 (effective October 8, 2025)</a><span class="when">anthropic.com · read 13 Nov 2026</span></li>
+</ol>
+</section>
+</article>
+</main>
+<footer class="site">
+<p>Researched and drafted with AI assistance; checked by a human.</p>
+<p>zenlite is independent of Anthropic. Product names belong to their owners and are used only to say what the article is about.</p>
+<p>Non-commercial. No ads, no tracking, no cookies. <a href="/">zenlite.ai</a> · <a href="/a/">All articles</a></p>
+</footer>
+</div>
+</body>
+</html>
