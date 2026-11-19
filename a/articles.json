@@ -64,6 +64,14 @@
     "reading_minutes": 4
   },
   {
+    "slug": "field-guide-agents-5-hook",
+    "title": "A hook that blocks risky commands",
+    "description": "Field Guide, Agents set up safely, part 5 of 6. Claude Code on Opus 5.5 wrote a hook that stopped a hard reset. What it blocks, and what got past it.",
+    "audience": "engineers",
+    "date": "2026-11-17",
+    "reading_minutes": 6
+  },
+  {
     "slug": "field-guide-code-review-1-seeded-bug",
     "title": "A seeded bug: does the AI review find it?",
     "description": "Field Guide, Code review with AI, part 1 of 6. Plant one bug you know about, ask Claude Code to review it, and check what it finds. Tested, with the catch.",
