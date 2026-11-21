@@ -168,6 +168,14 @@
     "reading_minutes": 4
   },
   {
+    "slug": "field-guide-fooled-3-not-sure",
+    "title": "Make it say \"I'm not sure\"",
+    "description": "Field Guide, Don't get fooled by AI, part 3. One line made free ChatGPT say \"I'm not sure\" where nobody can know. Without it, it was almost as careful.",
+    "audience": "general",
+    "date": "2026-11-18",
+    "reading_minutes": 5
+  },
+  {
     "slug": "field-guide-plan-your-study-1-year-plan",
     "title": "A month-by-month plan from your subject list",
     "description": "Field Guide, Plan your study (medical students), part 1. A month-by-month plan from your subjects and real hours, tested on free ChatGPT, with the catch.",

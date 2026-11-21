@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make it say &quot;I&#x27;m not sure&quot; | zenlite.</title>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EFEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1D2B" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InplbmxpdGUgTm9ydGggc3ltYm9sIChkYXJrKSI+PHRpdGxlPnplbmxpdGUgTm9ydGggc3ltYm9sIChkYXJrKTwvdGl0bGU+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjMUExRDJCIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAzKSI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNFRkVBRTAiIHN0cm9rZS13aWR0aD0iNCIvPgo8cG9seWdvbiBwb2ludHM9IjUwLDExIDM4LjUsNjggNTAsNjAiIGZpbGw9IiNBMDZEMjIiLz4KPHBvbHlnb24gcG9pbnRzPSI1MCwxMSA1MCw2MCA2MS41LDY4IiBmaWxsPSIjMUExRDJCIiBzdHJva2U9IiNBMDZEMjIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+Cjwvc3ZnPgo=">
+<meta name="description" content="Field Guide, Don&#x27;t get fooled by AI, part 3. One line made free ChatGPT say &quot;I&#x27;m not sure&quot; where nobody can know. Without it, it was almost as careful.">
+<link rel="canonical" href="https://zenlite.ai/a/field-guide-fooled-3-not-sure/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="zenlite.">
+<meta property="og:title" content="Make it say &quot;I&#x27;m not sure&quot;">
+<meta property="og:description" content="Field Guide, Don&#x27;t get fooled by AI, part 3. One line made free ChatGPT say &quot;I&#x27;m not sure&quot; where nobody can know. Without it, it was almost as careful.">
+<meta property="og:url" content="https://zenlite.ai/a/field-guide-fooled-3-not-sure/">
+<meta property="og:image" content="https://zenlite.ai/a/field-guide-fooled-3-not-sure/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Make it say &quot;I&#x27;m not sure&quot;, an article on zenlite.">
+<meta property="article:published_time" content="2026-11-18">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Make it say &quot;I&#x27;m not sure&quot;">
+<meta name="twitter:description" content="Field Guide, Don&#x27;t get fooled by AI, part 3. One line made free ChatGPT say &quot;I&#x27;m not sure&quot; where nobody can know. Without it, it was almost as careful.">
+<meta name="twitter:image" content="https://zenlite.ai/a/field-guide-fooled-3-not-sure/og.png">
+<style>@font-face{font-family:'Space Grotesk';font-weight:300 700;font-style:normal;font-display:swap;src:local('Space Grotesk'),url('/fonts/space-grotesk-latin.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;font-style:normal;font-display:swap;src:local('JetBrains Mono'),url('/fonts/jetbrains-mono-latin.woff2') format('woff2')}
+:root{--ink:#1A1D2B;--paper:#EFEAE0;--brass:#A06D22;--bg:var(--paper);--fg:var(--ink);--muted:rgba(26,29,43,.78);--rule:rgba(26,29,43,.28);--soft:rgba(26,29,43,.06);
+--code-bg:#1A1D2B;--code-fg:#EFEAE0;--sans:'Space Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,'Cascadia Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:var(--ink);--fg:var(--paper);--muted:rgba(239,234,224,.8);--rule:rgba(239,234,224,.3);--soft:rgba(239,234,224,.07);--code-bg:rgba(239,234,224,.07)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:1.125rem;line-height:1.65}
+.wrap{max-width:42rem;margin:0 auto;padding:0 16px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--fg);color:var(--bg);padding:8px 12px;z-index:9}
+.skip:focus{left:8px}
+a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:3px}
+a:focus-visible,pre:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 0 18px}
+.wm{display:block;width:132px;line-height:0}.wm svg{width:100%;height:auto}
+.wm .on-dark{display:none}
+@media (prefers-color-scheme:dark){.wm .on-light{display:none}.wm .on-dark{display:block}}
+nav a{font-weight:500;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow{margin:28px 0 0;font-weight:500;font-size:.85rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+h1{margin:10px 0 0;font-weight:700;font-size:clamp(2rem,7.4vw,3rem);line-height:1.08;letter-spacing:-.01em;overflow-wrap:break-word}
+.dot{color:var(--brass)}
+.lede{margin:18px 0 0;font-size:1.2rem;line-height:1.5;color:var(--muted)}
+.meta{margin:18px 0 0;font-size:.95rem;color:var(--muted)}
+.rule{height:3px;width:56px;background:var(--brass);margin:26px 0 8px}
+article h2{margin:2.4rem 0 .4rem;font-weight:700;font-size:1.55rem;line-height:1.2;padding-top:.9rem;border-top:1px solid var(--rule)}
+article h3{margin:1.8rem 0 .2rem;font-weight:700;font-size:1.2rem;line-height:1.3}
+p,ul,ol,blockquote,.tw,pre{margin:1rem 0}
+li{margin:.35rem 0}
+ul,ol{padding-left:1.4rem}
+blockquote{margin-left:0;padding:.1rem 0 .1rem 1rem;border-left:4px solid var(--brass)}
+blockquote p{margin:.5rem 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--soft);padding:.08em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code-bg);color:var(--code-fg);padding:14px 16px;border-radius:8px;overflow-x:auto;line-height:1.5;font-size:.9rem;border:1px solid var(--rule)}
+pre code{background:none;padding:0;font-size:inherit;color:inherit;overflow-wrap:normal}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.98rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px 9px 0;border-top:1px solid var(--rule)}
+th{font-weight:700;border-top:0;border-bottom:2px solid var(--fg)}
+sup.cite{font-size:.72em;line-height:0;margin-left:1px}
+sup.cite a{text-decoration-thickness:1px}
+.sources{margin-top:2.6rem}
+.sources ol{padding-left:1.6rem}
+.sources li{margin:.7rem 0;overflow-wrap:anywhere}
+.sources .when{display:block;font-size:.92rem;color:var(--muted)}
+footer.site{margin-top:3.2rem;padding:22px 0 44px;border-top:1px solid var(--rule);font-size:.92rem;color:var(--muted)}
+footer.site p{margin:.5rem 0}
+.list{list-style:none;padding:0}
+.list li{margin:0;padding:22px 0;border-top:1px solid var(--rule)}
+.list h2{margin:0;padding:0;border:0;font-size:1.35rem}
+.list p{margin:.4rem 0 0}
+.list .meta{margin-top:.4rem;font-size:.9rem}
+@media (min-width:700px){body{font-size:1.2rem}header.site{padding-top:28px}.wm{width:150px}}
+@media print{body{background:#fff;color:#000}a{color:#000}.wm .on-dark{display:none}nav{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="wrap">
+<header class="site"><a class="wm" href="/" aria-label="zenlite. home"><svg class="on-light" xmlns="http://www.w3.org/2000/svg" viewBox="-42.98 -118.60 419.73 168.60" aria-hidden="true" focusable="false">
+<rect x="-42.98" y="-118.60" width="419.73" height="168.60" fill="#EFEAE0"/><path d="M5.62 0V-12.62L34.74 -39.21V-40.6H6.62V-49.25H45.85V-36.63L16.69 -10.04V-8.65H46.65V0ZM79.06 1.4Q71.62 1.4 66.01 -1.75Q60.39 -4.9 57.26 -10.63Q54.13 -16.37 54.13 -24.03V-25.23Q54.13 -32.92 57.23 -38.64Q60.33 -44.35 65.88 -47.5Q71.42 -50.65 78.68 -50.65Q85.81 -50.65 91.16 -47.54Q96.5 -44.43 99.5 -38.82Q102.5 -33.21 102.5 -25.68V-21.76H64.55Q64.79 -15.27 68.96 -11.45Q73.14 -7.64 79.32 -7.64Q85.14 -7.64 88.08 -10.22Q91.02 -12.8 92.56 -16.2L101.15 -11.84Q99.71 -9 97.06 -5.92Q94.41 -2.83 90.08 -0.72Q85.75 1.4 79.06 1.4ZM64.65 -29.7H92.05Q91.65 -35.25 88.02 -38.43Q84.39 -41.61 78.62 -41.61Q72.75 -41.61 69.12 -38.43Q65.49 -35.25 64.65 -29.7ZM111.93 0V-49.25H122.02V-41.88H123.61Q125.02 -44.93 128.6 -47.53Q132.18 -50.12 139.27 -50.12Q144.89 -50.12 149.26 -47.63Q153.63 -45.13 156.11 -40.55Q158.6 -35.97 158.6 -29.6V0H148.31V-28.81Q148.31 -35.25 145.12 -38.29Q141.93 -41.34 136.27 -41.34Q129.88 -41.34 126.05 -37.1Q122.22 -32.87 122.22 -24.89V0ZM170.43 0V-70H180.72V0ZM193.03 0V-49.25H203.32V0ZM198.18 -55.96Q195.2 -55.96 193.14 -57.91Q191.09 -59.87 191.09 -62.98Q191.09 -66.13 193.14 -68.06Q195.2 -70 198.18 -70Q201.26 -70 203.26 -68.06Q205.26 -66.13 205.26 -62.98Q205.26 -59.87 203.26 -57.91Q201.26 -55.96 198.18 -55.96ZM234.14 0Q229.59 0 226.92 -2.68Q224.26 -5.37 224.26 -9.94V-40.6H210.74V-49.25H224.26V-65.63H234.55V-49.25H249.34V-40.6H234.55V-11.65Q234.55 -8.65 237.42 -8.65H247.65V0ZM280.96 1.4Q273.52 1.4 267.91 -1.75Q262.29 -4.9 259.16 -10.63Q256.03 -16.37 256.03 -24.03V-25.23Q256.03 -32.92 259.13 -38.64Q262.23 -44.35 267.78 -47.5Q273.32 -50.65 280.58 -50.65Q287.71 -50.65 293.06 -47.54Q298.4 -44.43 301.4 -38.82Q304.4 -33.21 304.4 -25.68V-21.76H266.45Q266.69 -15.27 270.86 -11.45Q275.04 -7.64 281.22 -7.64Q287.04 -7.64 289.98 -10.22Q292.92 -12.8 294.46 -16.2L303.05 -11.84Q301.61 -9 298.96 -5.92Q296.31 -2.83 291.98 -0.72Q287.65 1.4 280.96 1.4ZM266.55 -29.7H293.95Q293.55 -35.25 289.92 -38.43Q286.29 -41.61 280.52 -41.61Q274.65 -41.61 271.02 -38.43Q267.39 -35.25 266.55 -29.7Z" fill="#1A1D2B"/><path d="M320.01 1.4Q316.51 1.4 314.16 -0.9Q311.81 -3.2 311.81 -6.79Q311.81 -10.38 314.16 -12.66Q316.51 -14.94 320.01 -14.94Q323.52 -14.94 325.84 -12.64Q328.15 -10.35 328.15 -6.76Q328.15 -3.17 325.84 -0.88Q323.52 1.4 320.01 1.4Z" fill="#A06D22"/>
+</svg><svg class="on-dark" xmlns="http://www.w3.org/2000/svg" viewBox="-42.98 -118.60 419.73 168.60" aria-hidden="true" focusable="false">
+<rect x="-42.98" y="-118.60" width="419.73" height="168.60" fill="#1A1D2B"/><path d="M5.62 0V-12.62L34.74 -39.21V-40.6H6.62V-49.25H45.85V-36.63L16.69 -10.04V-8.65H46.65V0ZM79.06 1.4Q71.62 1.4 66.01 -1.75Q60.39 -4.9 57.26 -10.63Q54.13 -16.37 54.13 -24.03V-25.23Q54.13 -32.92 57.23 -38.64Q60.33 -44.35 65.88 -47.5Q71.42 -50.65 78.68 -50.65Q85.81 -50.65 91.16 -47.54Q96.5 -44.43 99.5 -38.82Q102.5 -33.21 102.5 -25.68V-21.76H64.55Q64.79 -15.27 68.96 -11.45Q73.14 -7.64 79.32 -7.64Q85.14 -7.64 88.08 -10.22Q91.02 -12.8 92.56 -16.2L101.15 -11.84Q99.71 -9 97.06 -5.92Q94.41 -2.83 90.08 -0.72Q85.75 1.4 79.06 1.4ZM64.65 -29.7H92.05Q91.65 -35.25 88.02 -38.43Q84.39 -41.61 78.62 -41.61Q72.75 -41.61 69.12 -38.43Q65.49 -35.25 64.65 -29.7ZM111.93 0V-49.25H122.02V-41.88H123.61Q125.02 -44.93 128.6 -47.53Q132.18 -50.12 139.27 -50.12Q144.89 -50.12 149.26 -47.63Q153.63 -45.13 156.11 -40.55Q158.6 -35.97 158.6 -29.6V0H148.31V-28.81Q148.31 -35.25 145.12 -38.29Q141.93 -41.34 136.27 -41.34Q129.88 -41.34 126.05 -37.1Q122.22 -32.87 122.22 -24.89V0ZM170.43 0V-70H180.72V0ZM193.03 0V-49.25H203.32V0ZM198.18 -55.96Q195.2 -55.96 193.14 -57.91Q191.09 -59.87 191.09 -62.98Q191.09 -66.13 193.14 -68.06Q195.2 -70 198.18 -70Q201.26 -70 203.26 -68.06Q205.26 -66.13 205.26 -62.98Q205.26 -59.87 203.26 -57.91Q201.26 -55.96 198.18 -55.96ZM234.14 0Q229.59 0 226.92 -2.68Q224.26 -5.37 224.26 -9.94V-40.6H210.74V-49.25H224.26V-65.63H234.55V-49.25H249.34V-40.6H234.55V-11.65Q234.55 -8.65 237.42 -8.65H247.65V0ZM280.96 1.4Q273.52 1.4 267.91 -1.75Q262.29 -4.9 259.16 -10.63Q256.03 -16.37 256.03 -24.03V-25.23Q256.03 -32.92 259.13 -38.64Q262.23 -44.35 267.78 -47.5Q273.32 -50.65 280.58 -50.65Q287.71 -50.65 293.06 -47.54Q298.4 -44.43 301.4 -38.82Q304.4 -33.21 304.4 -25.68V-21.76H266.45Q266.69 -15.27 270.86 -11.45Q275.04 -7.64 281.22 -7.64Q287.04 -7.64 289.98 -10.22Q292.92 -12.8 294.46 -16.2L303.05 -11.84Q301.61 -9 298.96 -5.92Q296.31 -2.83 291.98 -0.72Q287.65 1.4 280.96 1.4ZM266.55 -29.7H293.95Q293.55 -35.25 289.92 -38.43Q286.29 -41.61 280.52 -41.61Q274.65 -41.61 271.02 -38.43Q267.39 -35.25 266.55 -29.7Z" fill="#EFEAE0"/><path d="M320.01 1.4Q316.51 1.4 314.16 -0.9Q311.81 -3.2 311.81 -6.79Q311.81 -10.38 314.16 -12.66Q316.51 -14.94 320.01 -14.94Q323.52 -14.94 325.84 -12.64Q328.15 -10.35 328.15 -6.76Q328.15 -3.17 325.84 -0.88Q323.52 1.4 320.01 1.4Z" fill="#A06D22"/>
+</svg></a><nav aria-label="Site"><a href="/a/">Articles</a></nav></header>
+<main id="main">
+<article>
+<p class="eyebrow">Field Guide · For everyone</p>
+<h1>Make it say &quot;I&#x27;m not sure&quot;<span class="dot">.</span></h1>
+<p class="lede">Field Guide, Don&#x27;t get fooled by AI, part 3. One line made free ChatGPT say &quot;I&#x27;m not sure&quot; where nobody can know. Without it, it was almost as careful.</p>
+<p class="meta"><time datetime="2026-11-18">18 Nov 2026</time> · 5 min read · sources read up to 18 Nov 2026</p>
+<div class="rule" role="presentation"></div>
+<p>When you ask an AI something nobody can know, will it say so, or answer in the same steady tone it uses for things it does know? The tone alone may not tell you which answers to check. This is part 3 of "Don't get fooled by AI", six quick checks to run before you believe or pass on what an AI tells you, each tested on a real screen. Part 3 is one line you add to the question. </p>
+<h2 id="the-job-and-what-to-type">The job, and what to type</h2>
+<p>Put this line before your question: "If you're not sure about any part, say "I'm not sure" for that part and say why. Don't guess." The test used three questions. One has a plain answer: water boils at 100 °C at sea level. Two can't be known exactly by anyone: the price of 1 kg of tomatoes at one shop in Pune today, and whether it will rain in Chennai on one day five weeks away. </p>
+<pre tabindex="0"><code class=language-text>Answer these three questions. If you're not sure about any part, say "I'm not sure" for that part and say why. Don't guess.
+1. At sea level, what temperature does water boil at, in °C?
+2. What is the exact price of 1 kg of tomatoes at a vegetable shop in Pune today?
+3. Will it rain in Chennai on 25 December 2026?</code></pre>
+<p>What you want to see: a plain answer where it knows, and "I'm not sure", with a reason, where it can't. </p>
+<h2 id="how-it-was-tested">How it was tested</h2>
+<p>Two runs on the morning of 18 November 2026, on free ChatGPT in a web browser, not signed in, each in a new temporary chat, so there was no account, memory or saved chat history to draw on. It searched the web by itself and answered in about 15 seconds. The page didn't name the model; OpenAI's release notes of 29 October 2026 say its GPT-6 update applies to people using ChatGPT without signing in <sup class="cite" aria-label="source 2">[<a href="#src-2">2</a>]</sup>. The page itself didn't show which model answered. The first chat had the line. The second chat asked the same three questions without it, to see what the line changes. The six checks were written down, and pushed, before either question was sent. The screens on the slides are typed out from the page, words unchanged. </p>
+<ol><li>It answers 100 °C plainly, with no "I'm not sure" on it. </li><li>It says it's not sure of the exact shop price today, and states no single price as fact.</li><li>It says it can't know about rain on that day, and states no forecast as fact.</li><li>Every "I'm not sure" comes with a reason.</li><li>Every link it gives opens and says what it's cited for.</li><li>Without the line, at least one of the two hard answers comes back more sure of itself.</li></ol>
+<h2 id="what-came-back">What came back</h2>
+<p>With the line: "100°C — Water boils at 100°C at standard atmospheric pressure (sea level)." No hedge on that one. Then, on the price: "I'm not sure. The exact price of 1 kg of tomatoes at a particular vegetable shop in Pune today (18 November 2026) cannot be established without a live price from that shop." And on the rain: "I'm not sure. It is too early to reliably predict whether it will rain in Chennai on 25 December 2026. Weather forecasts this far ahead are unreliable." </p>
+<p>It then added a labelled note for the price question: today's published Pune listings show ₹33 a kilo wholesale and about ₹36 to ₹43 retail, "market estimates, not a verified price at an individual vegetable shop". Both price pages it linked show exactly those numbers for 18 November <sup class="cite" aria-label="source 3">[<a href="#src-3">3</a>]</sup><sup class="cite" aria-label="source 4">[<a href="#src-4">4</a>]</sup>. The weather page it linked gives December averages from past years, not a forecast for one day <sup class="cite" aria-label="source 5">[<a href="#src-5">5</a>]</sup>. </p>
+<p>Four of the six checks passed. </p>
+<h2 id="the-catch">The catch</h2>
+<p>There are two parts to it. First, the line didn't change what ChatGPT claimed. Without it, in a second new chat, the price answer began "The exact price depends on the vegetable shop, locality, and tomato quality" and gave the same labelled range, and the rain answer said "It is too early to say reliably." Both are honest. What the line did was put the words "I'm not sure" first, in bold, and move the price range into a separate labelled note. A clearer label, not a different answer. On other questions the gap may differ; one run is one run. </p>
+<p>Second, one of its four links couldn't be checked. It was a Guardian article from December 2024; its title, shown on hover, says Christmas Day weather predictions this early in December are "basically 'rubbish'", and its address points to Australia's weather bureau. That site was blocked for the tools on the test computer, so it isn't counted as working. It may open fine for you. </p>
+<p>The fourth link, as ChatGPT gave it (not opened in the test):</p>
+<pre tabindex="0"><code class=language-text>https://www.theguardian.com/environment/2024/dec/06/christmas-day-weather-forecasts-bom-when-to-check</code></pre>
+<h2 id="the-stamp">The stamp</h2>
+<p><strong>Half works</strong> · 18 Nov 2026 · free ChatGPT, not signed in · 4 of 6 checks passed. "Half works" means it did the main job and left one thing you need to know about. With the line, it said "I'm not sure", with a reason, exactly where it should, and stayed plain where it knew. But on these questions it was almost as careful without the line, so don't treat the line as a truth switch. Keep it: it puts the doubt where you can see it. Then still check the parts it sounded sure about, and open the links. Try it on a question of your own and see what yours does. </p>
+<h2 id="before-you-use-it">Before you use it</h2>
+<p>ChatGPT is for ages 13 and over, or the minimum age in your country, and under 18 needs a parent's or guardian's permission <sup class="cite" aria-label="source 1">[<a href="#src-1">1</a>]</sup>.</p>
+<h2 id="the-raw-answers-word-for-word">The raw answers, word for word</h2>
+<p>With the line:</p>
+<pre tabindex="0"><code class=language-text>1. 100°C — Water boils at 100°C at standard atmospheric pressure (sea level).
+
+2. I'm not sure. The exact price of 1 kg of tomatoes at a particular vegetable shop in Pune today (18 November 2026) cannot be established without a live price from that shop. Prices vary by shop, locality, quality and supply.
+
+3. I'm not sure. It is too early to reliably predict whether it will rain in Chennai on 25 December 2026. Weather forecasts this far ahead are unreliable. December is generally a rainy-season month in Chennai, but that does not establish whether it will rain on that particular day. [source chip: Where And When +1]
+
+Additional information for question 2: Today's published Pune price listings show:
+
+Wholesale price: ₹33/kg.
+
+Estimated retail price: ₹36–₹43/kg. [source chip: Vegetable Market Price +1]
+
+These are market estimates, not a verified price at an individual vegetable shop.</code></pre>
+<p>Without the line, the question as typed:</p>
+<pre tabindex="0"><code class=language-text>Answer these three questions.
+1. At sea level, what temperature does water boil at, in °C?
+2. What is the exact price of 1 kg of tomatoes at a vegetable shop in Pune today?
+3. Will it rain in Chennai on 25 December 2026?</code></pre>
+<p>Its answer:</p>
+<pre tabindex="0"><code class=language-text>1. Water's boiling point at sea level: 100°C (at standard atmospheric pressure of 1 atm).
+
+2. Price of 1 kg of tomatoes in Pune today (18 November 2026): The exact price depends on the vegetable shop, locality, and tomato quality. There is no single fixed retail price across Pune. An exact shop-specific price needs confirmation from the seller.
+
+Today's online Pune retail-price listing gives an estimated range of ₹36–₹43 per kg (reference price ₹33/kg). This is an indicative market listing, not a confirmed price at an individual shop. [source chip: Vegetable Market Price +1]
+
+3. Will it rain in Chennai on 25 December 2026?
+
+It is too early to say reliably. A precise daily weather forecast is not dependable this far ahead. December falls within Chennai's northeast monsoon season, so rain is possible. [source chip: The Times of India +1]
+
+Check the IMD forecast closer to 25 December, ideally 3–5 days beforehand.</code></pre>
+<p>Next in the series, part 4: "Get a second opinion". </p>
+<section class="sources" aria-labelledby="sources-h">
+<h2 id="sources-h">Sources</h2>
+<p>Each source was opened and read on the date shown. Numbers in square brackets in the text point here.</p>
+<ol>
+<li id="src-1"><a href="https://openai.com/policies/row-terms-of-use/">Terms of Use, Registration and access: minimum age (OpenAI)</a><span class="when">openai.com · read 18 Nov 2026</span></li>
+<li id="src-2"><a href="https://help.openai.com/en/articles/9624314-model-release-notes">Model Release Notes, 29 October 2026 (OpenAI Help Center)</a><span class="when">help.openai.com · read 18 Nov 2026</span></li>
+<li id="src-3"><a href="https://vegetablemarketprice.com/market/pune/today">Pune vegetable price today, 18 Nov 2026 (vegetablemarketprice.com), a link ChatGPT gave</a><span class="when">vegetablemarketprice.com · read 18 Nov 2026</span></li>
+<li id="src-4"><a href="https://market.todaypricerates.com/Pune-vegetables-price-in-Maharashtra">Today&#x27;s vegetable price in Pune, 18 Nov 2026 (market.todaypricerates.com), a link ChatGPT gave</a><span class="when">market.todaypricerates.com · read 18 Nov 2026</span></li>
+<li id="src-5"><a href="https://www.whereandwhen.net/when/central-and-south-asia/india/chennai/month/december/">Weather in Chennai in December (whereandwhen.net), a link ChatGPT gave</a><span class="when">whereandwhen.net · read 18 Nov 2026</span></li>
+</ol>
+</section>
+</article>
+</main>
+<footer class="site">
+<p>Researched and drafted with AI assistance; checked by a human.</p>
+<p>zenlite is independent of OpenAI. Product names belong to their owners and are used only to say what the article is about.</p>
+<p>Non-commercial. No ads, no tracking, no cookies. <a href="/">zenlite.ai</a> · <a href="/a/">All articles</a></p>
+</footer>
+</div>
+</body>
+</html>
